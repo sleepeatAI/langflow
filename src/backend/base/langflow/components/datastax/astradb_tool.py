@@ -3,12 +3,11 @@ from datetime import datetime, timezone
 from typing import Any
 
 from astrapy import Collection, DataAPIClient, Database
-from astrapy.admin import parse_api_endpoint
 from langchain_core.tools import StructuredTool, Tool
 from pydantic import BaseModel, Field, create_model
 
 from langflow.base.langchain_utilities.model import LCToolComponent
-from langflow.io import BoolInput, DictInput, HandleInput, IntInput, SecretStrInput, StrInput, TableInput
+from langflow.io import BoolInput, DictInput, DropdownInput, HandleInput, IntInput, SecretStrInput, StrInput, TableInput
 from langflow.logging import logger
 from langflow.schema.data import Data
 from langflow.schema.table import EditMode
@@ -39,6 +38,15 @@ class AstraDBToolComponent(LCToolComponent):
             info="The name of the keyspace within Astra where the collection is stored.",
             value="default_keyspace",
             advanced=True,
+        ),
+        DropdownInput(
+            name="environment",
+            display_name="Environment",
+            info="The environment for the Astra DB API Endpoint.",
+            options=["prod", "test", "dev"],
+            value="prod",
+            advanced=True,
+            combobox=True,
         ),
         StrInput(
             name="collection_name",

@@ -1,10 +1,8 @@
 import os
 
-from astrapy.admin import parse_api_endpoint
-
 from langflow.base.memory.model import LCChatMemoryComponent
 from langflow.field_typing.constants import Memory
-from langflow.inputs.inputs import MessageTextInput, SecretStrInput, StrInput
+from langflow.inputs.inputs import DropdownInput, MessageTextInput, SecretStrInput, StrInput
 
 
 class AstraDBChatMemory(LCChatMemoryComponent):
@@ -28,6 +26,15 @@ class AstraDBChatMemory(LCChatMemoryComponent):
             info="API endpoint URL for the Astra DB service.",
             value="ASTRA_DB_API_ENDPOINT",
             required=True,
+        ),
+        DropdownInput(
+            name="environment",
+            display_name="Environment",
+            info="The environment for the Astra DB API Endpoint.",
+            options=["prod", "test", "dev"],
+            value="prod",
+            advanced=True,
+            combobox=True,
         ),
         StrInput(
             name="collection_name",
@@ -65,5 +72,5 @@ class AstraDBChatMemory(LCChatMemoryComponent):
             token=self.token,
             api_endpoint=self.api_endpoint,
             namespace=self.namespace or None,
-            environment=parse_api_endpoint(self.api_endpoint).environment,
+            environment=self.environment,
         )

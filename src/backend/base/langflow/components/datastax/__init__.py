@@ -8,9 +8,13 @@ if TYPE_CHECKING:
     from .astra_assistant_manager import AstraAssistantManager
     from .astra_db import AstraDBChatMemory
     from .astra_vectorize import AstraVectorizeComponent
+    from .astradb import AstraDBVectorStoreComponent
     from .astradb_cql import AstraDBCQLToolComponent
+    from .astradb_graph import AstraDBGraphVectorStoreComponent
     from .astradb_tool import AstraDBToolComponent
     from .cassandra import CassandraChatMemory
+    from .cassandra_graph import CassandraGraphVectorStoreComponent
+    from .cassandravs import CassandraVectorStoreComponent
     from .create_assistant import AssistantsCreateAssistant
     from .create_thread import AssistantsCreateThread
     from .dotenv import Dotenv
@@ -28,9 +32,13 @@ _dynamic_imports = {
     "AstraAssistantManager": "astra_assistant_manager",
     "AstraDBCQLToolComponent": "astradb_cql",
     "AstraDBChatMemory": "astra_db",
+    "AstraDBVectorStoreComponent": "astradb",
+    "AstraDBGraphVectorStoreComponent": "astradb_graph",
     "AstraDBToolComponent": "astradb_tool",
     "AstraVectorizeComponent": "astra_vectorize",
     "CassandraChatMemory": "cassandra",
+    "CassandraGraphVectorStoreComponent": "cassandra_graph",
+    "CassandraVectorStoreComponent": "cassandravs",
     "Dotenv": "dotenv",
     "GetEnvVar": "getenvvar",
 }
@@ -44,9 +52,13 @@ __all__ = [
     "AstraAssistantManager",
     "AstraDBCQLToolComponent",
     "AstraDBChatMemory",
+    "AstraDBGraphVectorStoreComponent",
     "AstraDBToolComponent",
+    "AstraDBVectorStoreComponent",
     "AstraVectorizeComponent",
     "CassandraChatMemory",
+    "CassandraGraphVectorStoreComponent",
+    "CassandraVectorStoreComponent",
     "Dotenv",
     "GetEnvVar",
 ]

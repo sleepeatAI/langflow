@@ -1,7 +1,6 @@
 import os
 
 import orjson
-from astrapy.admin import parse_api_endpoint
 
 from langflow.base.vectorstores.model import LCVectorStoreComponent, check_cached_vector_store
 from langflow.helpers.data import docs_to_data
@@ -39,6 +38,15 @@ class AstraDBGraphVectorStoreComponent(LCVectorStoreComponent):
             info="API endpoint URL for the Astra DB service.",
             value="ASTRA_DB_API_ENDPOINT",
             required=True,
+        ),
+        DropdownInput(
+            name="environment",
+            display_name="Environment",
+            info="The environment for the Astra DB API Endpoint.",
+            options=["prod", "test", "dev"],
+            value="prod",
+            advanced=True,
+            combobox=True,
         ),
         StrInput(
             name="collection_name",
@@ -202,7 +210,7 @@ class AstraDBGraphVectorStoreComponent(LCVectorStoreComponent):
                 token=self.token,
                 api_endpoint=self.api_endpoint,
                 namespace=self.keyspace or None,
-                environment=parse_api_endpoint(self.api_endpoint).environment if self.api_endpoint else None,
+                environment=self.environment or None,
                 metric=self.metric or None,
                 batch_size=self.batch_size or None,
                 bulk_insert_batch_concurrency=self.bulk_insert_batch_concurrency or None,

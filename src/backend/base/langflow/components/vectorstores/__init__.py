@@ -5,8 +5,6 @@ from typing import TYPE_CHECKING, Any
 from langflow.components._importing import import_mod
 
 if TYPE_CHECKING:
-    from .astradb import AstraDBVectorStoreComponent
-    from .astradb_graph import AstraDBGraphVectorStoreComponent
     from .cassandra import CassandraVectorStoreComponent
     from .cassandra_graph import CassandraGraphVectorStoreComponent
     from .chroma import ChromaVectorStoreComponent
@@ -31,8 +29,6 @@ if TYPE_CHECKING:
     from .weaviate import WeaviateVectorStoreComponent
 
 _dynamic_imports = {
-    "AstraDBVectorStoreComponent": "astradb",
-    "AstraDBGraphVectorStoreComponent": "astradb_graph",
     "CassandraVectorStoreComponent": "cassandra",
     "CassandraGraphVectorStoreComponent": "cassandra_graph",
     "ChromaVectorStoreComponent": "chroma",
