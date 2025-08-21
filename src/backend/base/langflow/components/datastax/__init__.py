@@ -6,7 +6,7 @@ from langflow.components._importing import import_mod
 
 if TYPE_CHECKING:
     from .astra_assistant_manager import AstraAssistantManager
-    from .astra_db import AstraDBChatMemory
+    from .astra_chat import AstraDBChatMemory
     from .astra_vectorize import AstraVectorizeComponent
     from .astradb import AstraDBVectorStoreComponent
     from .astradb_cql import AstraDBCQLToolComponent
